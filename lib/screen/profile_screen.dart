@@ -16,7 +16,12 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
 @override
   void initState() {
     super.initState();
-    tabController = TabController(length: 2, vsync: this);
+    tabController = TabController(length: 2, vsync: this, initialIndex: 0);
+  }
+  @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
   }
 
   @override
@@ -49,6 +54,7 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
               )
             ],
             bottom: TabBar(
+              controller: tabController,
               indicatorColor: Colors.orange.shade700,
                 tabs: [
               Tab(

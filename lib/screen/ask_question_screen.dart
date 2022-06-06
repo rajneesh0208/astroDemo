@@ -75,7 +75,7 @@ class _AskQuestionScreenState extends State<AskQuestionScreen> {
                         children: [
                           Container(
                             width: w,
-                            margin: EdgeInsets.symmetric(vertical: 10),
+                            margin: EdgeInsets.symmetric(vertical: 10,horizontal: w * 0.05),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: const [

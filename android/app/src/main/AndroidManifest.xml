@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.developer.astrodemo">
+        <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="astrodemo"
         android:name="${applicationName}"
