@@ -17,11 +17,11 @@ class AllRelativeModel {
     this.data,
   });
 
-  String httpStatus;
-  int httpStatusCode;
-  bool success;
-  String message;
-  Data data;
+  String? httpStatus;
+  int? httpStatusCode;
+  bool? success;
+  String? message;
+  Data? data;
 
   factory AllRelativeModel.fromJson(Map<String, dynamic> json) => AllRelativeModel(
     httpStatus: json["httpStatus"],
@@ -36,7 +36,7 @@ class AllRelativeModel {
     "httpStatusCode": httpStatusCode,
     "success": success,
     "message": message,
-    "data": data.toJson(),
+    "data": data!.toJson(),
   };
 }
 
@@ -45,14 +45,14 @@ class Data {
     this.allRelatives,
   });
 
-  List<AllRelative> allRelatives;
+  List<AllRelative>? allRelatives;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     allRelatives: List<AllRelative>.from(json["allRelatives"].map((x) => AllRelative.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
-    "allRelatives": List<dynamic>.from(allRelatives.map((x) => x.toJson())),
+    "allRelatives": List<dynamic>.from(allRelatives!.map((x) => x.toJson())),
   };
 }
 
@@ -71,17 +71,17 @@ class AllRelative {
     this.birthPlace,
   });
 
-  String uuid;
-  int relationId;
-  String relation;
-  String firstName;
+  String? uuid;
+  int? relationId;
+  String? relation;
+  String? firstName;
   dynamic middleName;
-  String lastName;
-  String fullName;
-  String gender;
-  DateTime dateAndTimeOfBirth;
-  BirthDetails birthDetails;
-  BirthPlace birthPlace;
+  String? lastName;
+  String? fullName;
+  String? gender;
+  DateTime? dateAndTimeOfBirth;
+  BirthDetails? birthDetails;
+  BirthPlace? birthPlace;
 
   factory AllRelative.fromJson(Map<String, dynamic> json) => AllRelative(
     uuid: json["uuid"],
@@ -106,9 +106,9 @@ class AllRelative {
     "lastName": lastName,
     "fullName": fullName,
     "gender": gender,
-    "dateAndTimeOfBirth": dateAndTimeOfBirth.toIso8601String(),
-    "birthDetails": birthDetails.toJson(),
-    "birthPlace": birthPlace.toJson(),
+    "dateAndTimeOfBirth": dateAndTimeOfBirth!.toIso8601String(),
+    "birthDetails": birthDetails!.toJson(),
+    "birthPlace": birthPlace!.toJson(),
   };
 }
 
@@ -122,12 +122,12 @@ class BirthDetails {
     this.tobMin,
   });
 
-  int dobYear;
-  int dobMonth;
-  int dobDay;
-  int tobHour;
-  String meridiem;
-  int tobMin;
+  int? dobYear;
+  int? dobMonth;
+  int? dobDay;
+  int? tobHour;
+  String? meridiem;
+  int? tobMin;
 
   factory BirthDetails.fromJson(Map<String, dynamic> json) => BirthDetails(
     dobYear: json["dobYear"],
@@ -154,8 +154,8 @@ class BirthPlace {
     this.placeId,
   });
 
-  String placeName;
-  String placeId;
+  String? placeName;
+  String? placeId;
 
   factory BirthPlace.fromJson(Map<String, dynamic> json) => BirthPlace(
     placeName: json["placeName"],

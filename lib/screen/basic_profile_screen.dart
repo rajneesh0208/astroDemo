@@ -11,6 +11,13 @@ class BasicProfileScreen extends StatefulWidget {
 
 class _BasicProfileScreenState extends State<BasicProfileScreen> {
   dynamic h,w;
+
+  @override
+  void initState() {
+    super.initState();
+   getAllRelativeData();
+  }
+
   @override
   Widget build(BuildContext context) {
     h = MediaQuery.of(context).size.height;
@@ -110,5 +117,9 @@ class _BasicProfileScreenState extends State<BasicProfileScreen> {
         ],
       )
     );
+  }
+
+  void getAllRelativeData() async {
+
   }
 }
