@@ -55,36 +55,57 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
             ],
             bottom: TabBar(
               controller: tabController,
-              indicatorColor: Colors.orange.shade700,
+              indicatorColor: Colors.transparent,
                 tabs: [
-              Tab(
-                child: GestureDetector(
-                  onTap: (){
-                    setState((){
-                      profileProvider.defaultTab(0);
-                    });
-                  },
-                  child: Text("My Profile",style: TextStyle(color: profileProvider.currentTab == 0
-                      ? Colors.orange.shade700:Colors.black,fontSize: 18)),
+              GestureDetector(
+                onTap: (){
+                  setState((){
+                    profileProvider.defaultTab(0);
+                  });
+                },
+                child: Tab(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("My Profile",style: TextStyle(color: profileProvider.currentTab == 0
+                          ? Colors.orange.shade700:Colors.black,fontSize: 18)),
+                      Divider(
+                        color: profileProvider.currentTab == 0
+                            ? Colors.orange.shade700:Colors.transparent,
+                        thickness: 1,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              Tab(
-                child: GestureDetector(
-                  onTap: (){
-                    setState((){
-                       profileProvider.defaultTab(1);
-                    });
-                  },
-                  child: Text("Order History",style: TextStyle(color: profileProvider.currentTab == 1
-                      ? Colors.orange.shade700:Colors.black,fontSize: 18)),
+              GestureDetector(
+                onTap: (){
+                  setState((){
+                    profileProvider.defaultTab(1);
+                  });
+                },
+                child: Tab(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Order History",style: TextStyle(color: profileProvider.currentTab == 1
+                          ? Colors.orange.shade700:Colors.black,fontSize: 18)),
+                      Divider(
+                        color: profileProvider.currentTab == 1
+                            ? Colors.orange.shade700:Colors.transparent,
+                        thickness: 1,
+                      ),
+                    ],
+                  ),
                 ),
               ),
 
             ]),
           ),
         ),
-        body: const TabBarView(
-          children: [
+        body:  TabBarView(
+          controller: tabController,
+          children: const [
              BasicProfileScreen(),
              OrderScreen(),
           ],
