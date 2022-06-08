@@ -55,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
             ],
             bottom: TabBar(
               controller: tabController,
-              indicatorColor: Colors.orange.shade700,
+              indicatorColor: Colors.white,
                 tabs: [
               Tab(
                 child: GestureDetector(
@@ -64,8 +64,19 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                       profileProvider.defaultTab(0);
                     });
                   },
-                  child: Text("My Profile",style: TextStyle(color: profileProvider.currentTab == 0
-                      ? Colors.orange.shade700:Colors.black,fontSize: 18)),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("My Profile",style: TextStyle(color: profileProvider.currentTab == 0
+                            ? Colors.orange.shade700:Colors.black,fontSize: 18)),
+                        // SizedBox(height: 10,),
+                        Divider(height: 1,color: profileProvider.currentTab == 0
+                            ? Colors.orange.shade700:Colors.transparent,thickness: 1,),
+                      ],
+                    ),
+                  ),
                 ),
               ),
               Tab(
@@ -75,8 +86,19 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                        profileProvider.defaultTab(1);
                     });
                   },
-                  child: Text("Order History",style: TextStyle(color: profileProvider.currentTab == 1
-                      ? Colors.orange.shade700:Colors.black,fontSize: 18)),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Order History",style: TextStyle(color: profileProvider.currentTab == 1
+                            ? Colors.orange.shade700:Colors.black,fontSize: 18)),
+                        // SizedBox(height: 10,),
+                        Divider(height: 1,color: profileProvider.currentTab == 1
+                            ? Colors.orange.shade700:Colors.transparent,thickness: 1,),
+                      ],
+                    ),
+                  ),
                 ),
               ),
 
