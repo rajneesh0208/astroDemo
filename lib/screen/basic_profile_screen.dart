@@ -310,14 +310,16 @@ class _BasicProfileScreenState extends State<BasicProfileScreen> {
                                               GestureDetector(
                                                 onTap: () {
                                                   setState(() {
-                                                    showAddRelative = true;
                                                     value.updateProfile(
                                                         true,
                                                         value.relativeData!.allRelatives![index].uuid.toString());
+                                                    showAddRelative = true;
                                                   });
                                                 },
-                                                child: SizedBox(
-                                                  width: w * 0.01,
+                                                child: Container(
+                                                  // margin: EdgeInsets.only(
+                                                  //     left: w * 0.1),
+                                                  width: w * 0.05,
                                                   child: Icon(
                                                     Icons.edit,
                                                     color: Colors.orange.shade700,
@@ -333,7 +335,7 @@ class _BasicProfileScreenState extends State<BasicProfileScreen> {
                                                 },
                                                 child: Container(
                                                   margin: EdgeInsets.only(
-                                                      left: w * 0.1),
+                                                      left: w * 0.05),
                                                   width: w * 0.05,
                                                   child: const Icon(
                                                     Icons.delete,
