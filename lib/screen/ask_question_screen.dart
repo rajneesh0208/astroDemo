@@ -55,9 +55,12 @@ class _AskQuestionScreenState extends State<AskQuestionScreen> {
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
             },
-            child: Image.asset(
-              "assets/profile.png",
-              width: 30,
+            child: Container(
+              margin: const EdgeInsets.symmetric( horizontal: 15),
+              child: Image.asset(
+                "assets/profile.png",
+                width: 30,
+              ),
             ),
           ),
         ],

@@ -23,13 +23,13 @@ class AllRelativeModel {
   String? message;
   Data? data;
 
-  factory AllRelativeModel.fromJson(Map<String, dynamic> json) => AllRelativeModel(
-    httpStatus: json["httpStatus"],
-    httpStatusCode: json["httpStatusCode"],
-    success: json["success"],
-    message: json["message"],
-    data: Data.fromJson(json["data"]),
-  );
+  AllRelativeModel.fromJson(Map<String, dynamic> json) {
+    httpStatus = json["httpStatus"];
+    httpStatusCode = json["httpStatusCode"];
+    success = json["success"];
+    message = json["message"];
+    data = json["data"] == null ? null : Data.fromJson(json["data"]);
+  }
 
   Map<String, dynamic> toJson() => {
     "httpStatus": httpStatus,
@@ -71,15 +71,15 @@ class AllRelative {
     this.birthPlace,
   });
 
-  String? uuid;
-  int? relationId;
+  String ?uuid;
+  int ?relationId;
   String? relation;
-  String? firstName;
+  String ?firstName;
   dynamic middleName;
-  String? lastName;
-  String? fullName;
-  String? gender;
-  DateTime? dateAndTimeOfBirth;
+  String ?lastName;
+  String ?fullName;
+  dynamic gender;
+  DateTime ?dateAndTimeOfBirth;
   BirthDetails? birthDetails;
   BirthPlace? birthPlace;
 
@@ -126,7 +126,7 @@ class BirthDetails {
   int? dobMonth;
   int? dobDay;
   int? tobHour;
-  String? meridiem;
+  dynamic meridiem;
   int? tobMin;
 
   factory BirthDetails.fromJson(Map<String, dynamic> json) => BirthDetails(
@@ -148,6 +148,7 @@ class BirthDetails {
   };
 }
 
+
 class BirthPlace {
   BirthPlace({
     this.placeName,
@@ -167,3 +168,4 @@ class BirthPlace {
     "placeId": placeId,
   };
 }
+
