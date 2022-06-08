@@ -26,9 +26,10 @@ class _BasicProfileScreenState extends State<BasicProfileScreen> {
   var minController = TextEditingController();
   var placeController = TextEditingController();
 
-  var genderList = ["Male", "Female", "Other"];
+  var genderList = ["MALE", "FEMALE"];
 
-  var selectGender, selectRelation;
+  var selectGender ;
+  var selectRelation ;
 
   var RelationList = [
     "Father",
@@ -53,10 +54,13 @@ class _BasicProfileScreenState extends State<BasicProfileScreen> {
 
   String placeId = "";
 
+  bool showRelativeDetails = false;
+
   @override
   void initState() {
     super.initState();
     getAllRelativeData();
+    // getUserDetails();
   }
 
   @override
@@ -134,13 +138,42 @@ class _BasicProfileScreenState extends State<BasicProfileScreen> {
               ),
               profileProvider.profileTab == 0
                   ? Container(
-                      child: const Center(
-                        child: const Text("Basic Profile"),
+                      child:  Center(
+                        child: Column(
+                          children: [
+                            const Text("Basic Profile"),
+                           /* GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  showAddRelative = true;
+                                });
+                              },
+                              child: Container(
+                                margin: EdgeInsets.symmetric(
+                                    vertical: h * 0.03),
+                                padding: EdgeInsets.symmetric(
+                                    vertical: h * 0.02,
+                                    horizontal: w * 0.04),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.orange.shade700,
+                                ),
+                                child: const Text(
+                                  "+ Add New Profile",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 14),
+                                ),
+                              ),
+                            ),*/
+                          ],
+                        ),
                       ),
                     )
                   : showAddRelative == true
                       ? addNewProfile()
-                      : Consumer<ProfileProvider>(
+                      /*: showRelativeDetails == true
+                      ? showRelativeDetails()*/:
+              Consumer<ProfileProvider>(
                           builder: (context, value, _) {
                             if(value.relativeData != null ){
                               return Container(
@@ -308,12 +341,15 @@ class _BasicProfileScreenState extends State<BasicProfileScreen> {
                                                 ),
                                               ),
                                               GestureDetector(
-                                                onTap: () {
+                                                onTap: () async{
                                                   setState(() {
+
                                                     value.updateProfile(
                                                         true,
                                                         value.relativeData!.allRelatives![index].uuid.toString());
                                                     showAddRelative = true;
+                                                    // showRelativeDetails = true;
+
                                                   });
                                                 },
                                                 child: Container(
@@ -467,10 +503,13 @@ class _BasicProfileScreenState extends State<BasicProfileScreen> {
             ));
   }
 
-  addNewProfile() {
+  addNewProfile()  {
     ProfileProvider profileProvider =
         Provider.of<ProfileProvider>(context, listen: false);
-    profileProvider.updateStatus == true ? getUSerDetails() : null;
+    if(profileProvider.updateStatus == true){
+     getUserDetails();
+    }
+
     return Form(
       key: _formKey,
       child: Container(
@@ -831,7 +870,7 @@ class _BasicProfileScreenState extends State<BasicProfileScreen> {
                           child: Padding(
                               padding: const EdgeInsets.only(left: 10.0),
                               child: DropdownButtonHideUnderline(
-                                  child: DropdownButton(
+                                  child: DropdownButton<String>(
                                 isExpanded: true,
                                 value: selectGender,
                                 hint: const Text(
@@ -861,7 +900,7 @@ class _BasicProfileScreenState extends State<BasicProfileScreen> {
                                 ),
                                 onChanged: (value) {
                                   setState(() {
-                                    selectGender = value;
+                                    selectGender = value.toString();
                                   });
                                 },
                               ))))
@@ -922,7 +961,7 @@ class _BasicProfileScreenState extends State<BasicProfileScreen> {
                                     }
                                   }
                                   setState(() {
-                                    selectRelation = value;
+                                    selectRelation = value.toString();
                                   });
                                 },
                               ))))
@@ -1008,7 +1047,7 @@ class _BasicProfileScreenState extends State<BasicProfileScreen> {
     );
   }
 
-  getUSerDetails() {
+   getUserDetails() {
     ProfileProvider profileProvider = Provider.of<ProfileProvider>(context);
     for (int i = 0;
         i < profileProvider.relativeData!.allRelatives!.length;
@@ -1033,9 +1072,13 @@ class _BasicProfileScreenState extends State<BasicProfileScreen> {
           minController.text = profileProvider
               .relativeData!.allRelatives![i].birthDetails!.tobMin
               .toString();
-          selectGender = profileProvider.relativeData!.allRelatives![i].gender;
+          placeController.text = profileProvider
+              .relativeData!.allRelatives![i].birthPlace!.placeName.toString();
+          // selectGender = profileProvider.relativeData!.allRelatives![i].gender;
           selectRelation =
               profileProvider.relativeData!.allRelatives![i].relation;
+          relationId = profileProvider.relativeData!.allRelatives![i].relationId!;
+          placeId = profileProvider.relativeData!.allRelatives![i].birthPlace!.placeId.toString();
           profileProvider.amPm = profileProvider
               .relativeData!.allRelatives![i].birthDetails!.meridiem
               .toString();

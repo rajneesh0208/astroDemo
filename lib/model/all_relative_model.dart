@@ -73,12 +73,12 @@ class AllRelative {
 
   String ?uuid;
   int ?relationId;
-  String? relation;
-  String ?firstName;
+  var relation;
+  String? firstName;
   dynamic middleName;
-  String ?lastName;
-  String ?fullName;
-  dynamic gender;
+  String? lastName;
+  String? fullName;
+  String? gender;
   DateTime ?dateAndTimeOfBirth;
   BirthDetails? birthDetails;
   BirthPlace? birthPlace;
