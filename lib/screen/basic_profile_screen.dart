@@ -990,6 +990,7 @@ class _BasicProfileScreenState extends State<BasicProfileScreen> {
                     if (profileProvider.successMsg.isNotEmpty) {
                       setState(() {
                         showAddRelative = false;
+                        profileProvider.updateProfile(false,"");
                         getAllRelativeData();
                       });
                     }
